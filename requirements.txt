@@ -1,0 +1,23 @@
+# AstrBot 插件依赖
+astrbot>=0.1.0
+
+# 向量检索
+faiss-cpu>=1.7.4
+
+# BM25 稀疏检索
+rank-bm25>=0.2.2
+
+# 中文分词
+jieba>=0.42.1
+
+# 向量模型（可选，有则使用，无则降级）
+sentence-transformers>=2.2.0
+torch>=2.0.0
+transformers>=4.30.0
+
+# Web UI
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# 工具库
+numpy>=1.24.0
