@@ -9,19 +9,27 @@ class EmbeddingService:
         self.dim = dim or Config.EMBEDDING_DIM
         self.model = None
         self._fallback = False
-        model_name = model_name or Config.EMBEDDING_MODEL
-        device = device or Config.EMBEDDING_DEVICE
+        self._initialized = False
+        self.model_name = model_name or Config.EMBEDDING_MODEL
+        self.device = device or Config.EMBEDDING_DEVICE
+        
+    
+    def _init_model(self):
+        if self._initialized:
+            return
         
         try:
             from sentence_transformers import SentenceTransformer
-            print(f"[Embedding] Loading model: {model_name}")
-            self.model = SentenceTransformer(model_name, device=device)
+            print(f"[Embedding] Loading model: {self.model_name}")
+            self.model = SentenceTransformer(self.model_name, device=self.device)
             self.dim = self.model.get_sentence_embedding_dimension()
             print(f"[Embedding] Model dim: {self.dim}")
         except Exception as e:
             print(f"[Embedding] Model load failed, using fallback: {e}")
             self._fallback = True
             self._init_fallback()
+        
+        self._initialized = True
     
     def _init_fallback(self):
         np.random.seed(42)
@@ -44,6 +52,10 @@ class EmbeddingService:
         return features
     
     def encode(self, texts: List[str]) -> np.ndarray:
+        # 延迟加载
+        if not self._initialized:
+            self._init_model()
+        
         if self._fallback:
             vectors = []
             for text in texts:
