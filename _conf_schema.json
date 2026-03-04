@@ -1,0 +1,145 @@
+{
+  "type": "object",
+  "properties": {
+    "BUFFER_MAX_CHARS": {
+      "title": "Buffer Max Chars",
+      "description": "Maximum character count before buffer flush",
+      "type": "integer",
+      "default": 400
+    },
+    "BUFFER_IDLE_TIMEOUT": {
+      "title": "Buffer Idle Timeout",
+      "description": "Idle time (seconds) before buffer flush",
+      "type": "integer",
+      "default": 180
+    },
+    "MSG_MIN_LENGTH": {
+      "title": "Message Min Length",
+      "description": "Minimum message length to be buffered",
+      "type": "integer",
+      "default": 3
+    },
+    "RRF_K": {
+      "title": "RRF K",
+      "description": "Reciprocal Rank Fusion K parameter",
+      "type": "integer",
+      "default": 60
+    },
+    "RECALL_TOP_K": {
+      "title": "Recall Top K",
+      "description": "Top K results to recall from each path",
+      "type": "integer",
+      "default": 10
+    },
+    "RERANK_TOP_K": {
+      "title": "Rerank Top K",
+      "description": "Top K results after reranking",
+      "type": "integer",
+      "default": 3
+    },
+    "EMBEDDING_MODEL": {
+      "title": "Embedding Model",
+      "description": "Sentence transformer embedding model",
+      "type": "string",
+      "default": "BAAI/bge-small-zh"
+    },
+    "EMBEDDING_DIM": {
+      "title": "Embedding Dim",
+      "description": "Embedding dimension",
+      "type": "integer",
+      "default": 512
+    },
+    "EMBEDDING_DEVICE": {
+      "title": "Embedding Device",
+      "description": "Device for embedding model (cpu/cuda)",
+      "type": "string",
+      "enum": ["cpu", "cuda"],
+      "default": "cpu"
+    },
+    "RERANK_MODEL": {
+      "title": "Rerank Model",
+      "description": "Sentence transformer rerank model",
+      "type": "string",
+      "default": "BAAI/bge-reranker-base"
+    },
+    "ENABLE_RERANKER": {
+      "title": "Enable Reranker",
+      "description": "Enable reranker model",
+      "type": "boolean",
+      "default": false
+    },
+    "USE_MILVUS": {
+      "title": "Use Milvus",
+      "description": "Use Milvus vector DB instead of FAISS",
+      "type": "boolean",
+      "default": false
+    },
+    "MILVUS_URI": {
+      "title": "Milvus URI",
+      "description": "Milvus server URI",
+      "type": "string",
+      "default": "http://localhost:19530"
+    },
+    "MILVUS_COLLECTION": {
+      "title": "Milvus Collection",
+      "description": "Milvus collection name",
+      "type": "string",
+      "default": "group_chat_memory"
+    },
+    "STORAGE_DB_PATH": {
+      "title": "Storage DB Path",
+      "description": "SQLite database path",
+      "type": "string",
+      "default": "./rag_memory.db"
+    },
+    "MIN_VECTOR_COUNT_FOR_IVF": {
+      "title": "Min Vector Count IVF",
+      "description": "Min vectors to use IVF index",
+      "type": "integer",
+      "default": 200
+    },
+    "IVF_NLIST": {
+      "title": "IVF Nlist",
+      "description": "Number of clusters for IVF index",
+      "type": "integer",
+      "default": 10
+    },
+    "ENABLE_AUTO_FORGET": {
+      "title": "Enable Auto Forget",
+      "description": "Enable automatic forgetting of old documents",
+      "type": "boolean",
+      "default": true
+    },
+    "FORGET_DAYS": {
+      "title": "Forget Days",
+      "description": "Days before documents are forgotten",
+      "type": "integer",
+      "default": 30
+    },
+    "MAX_DOCUMENTS": {
+      "title": "Max Documents",
+      "description": "Maximum number of documents before auto-forget",
+      "type": "integer",
+      "default": 10000
+    },
+    "ENABLE_BACKUP": {
+      "title": "Enable Backup",
+      "description": "Enable automatic backups",
+      "type": "boolean",
+      "default": true
+    },
+    "BACKUP_DIR": {
+      "title": "Backup Dir",
+      "description": "Backup directory",
+      "type": "string",
+      "default": "./backups"
+    },
+    "MAX_BACKUPS": {
+      "title": "Max Backups",
+      "description": "Maximum number of backups to keep",
+      "type": "integer",
+      "default": 5
+    }
+  },
+  "required": []
+}
